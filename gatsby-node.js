@@ -3,5 +3,17 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const routeList = [{
+  path: '/test/:ccc',
+  component: './src/templates/test.jsx',
+}];
 
-// You can delete this file if you're not using it
+
+exports.createPages = async ({ actions: { createPage } }) => {
+  routeList.forEach(({ path, component }) => {
+    createPage({
+      path,
+      component: require.resolve(component),
+    });
+  });
+};
