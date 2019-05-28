@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
+import './i18n';
 
 import './index.css';
 import store from './store';

@@ -93,10 +93,10 @@ class PageWrapper extends Component {
         <Link to="/home/">home</Link>
 
         <br />
-        <Link to="/test/fff?gg=gg">test fff</Link>
+        <Link to="/test/some_id?gg=gg">test fff</Link>
 
         <br />
-        <Link to="/test/fff1?gg=gg">test fff1</Link>
+        <Link to="/test/some_id2?gg=gg">test fff1</Link>
 
         <br />
         <Link to="/login">login</Link>
