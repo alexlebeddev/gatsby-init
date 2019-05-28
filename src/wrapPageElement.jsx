@@ -10,7 +10,7 @@ const Index = ({ element, props }) => {
   } = props;
 
   location.searchParams = location.search ? queryString.parse(location.search) : {};
-  const parseURL = pathContext.slug ? match(pathContext.slug, location.pathname) : null;
+  const parseURL = pathContext.matchPath ? match(pathContext.matchPath, location.pathname) : null;
 
   location.params = parseURL ? parseURL.params : {};
 

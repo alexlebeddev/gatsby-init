@@ -8,9 +8,12 @@ import PageWrapper from '../component/pageWrapper';
 
 class Test extends Component {
   render() {
+    console.log(_.omit(this.props, ['i18n']))
     return (
       <PageWrapper {...this.props}>
         {JSON.stringify(_.omit(this.props, ['i18n']))}
+        <br />
+        {this.props.location.params.ccc}
         <br />
         {this.props.location.pathname}
         <br />
