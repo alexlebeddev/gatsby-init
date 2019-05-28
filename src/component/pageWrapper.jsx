@@ -4,8 +4,7 @@ import { Spinner } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
-import * as queryString from 'query-string';
-import { match } from '@reach/router/lib/utils';
+import config from '../config';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -19,16 +18,6 @@ import {
 class PageWrapper extends Component {
   constructor(...props) {
     super(...props);
-
-    const {
-      location,
-      pageResources,
-    } = props[0];
-
-    location.searchParams = location.search ? queryString.parse(location.search) : {};
-    const parseURL = match(pageResources.page.path, location.pathname);
-
-    location.params = parseURL ? parseURL.params : {};
 
     this.state = {
       view: this.checkAuth(props[0]),
@@ -63,7 +52,7 @@ class PageWrapper extends Component {
       return false;
     }
 
-    if (!props.token) {
+    if (!props.token && !config.isServer) {
       try {
         const lSore = JSON.parse(localStorage.getItem('token'));
         if (lSore) {
@@ -104,7 +93,10 @@ class PageWrapper extends Component {
         <Link to="/home/">home</Link>
 
         <br />
-        <Link to="/test/fff?gg=gg">test</Link>
+        <Link to="/test/fff?gg=gg">test fff</Link>
+
+        <br />
+        <Link to="/test/fff1?gg=gg">test fff1</Link>
 
         <br />
         <Link to="/login">login</Link>
@@ -125,8 +117,6 @@ PageWrapper.propTypes = {
   children: PropTypes.node,
   user: PropTypes.shape(),
   token: PropTypes.shape(),
-  location: PropTypes.shape().isRequired,
-  pageResources: PropTypes.shape().isRequired,
   loaderView: PropTypes.bool,
   setTokenCall: PropTypes.func.isRequired,
   dropTokenCall: PropTypes.func.isRequired,

@@ -3,17 +3,22 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-const routeList = [{
-  path: '/test/:ccc',
-  component: './src/templates/test.jsx',
-}];
 
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions;
 
-exports.createPages = async ({ actions: { createPage } }) => {
-  routeList.forEach(({ path, component }) => {
-    createPage({
-      path,
-      component: require.resolve(component),
-    });
-  });
+  if (page.path.match(/^\/test\//)) {
+    deletePage(page);
+
+    const newPage = {
+      ...page,
+      matchPath: '/test/:ccc',
+      context: {
+        ...page.context,
+        slug: '/test/:ccc',
+      },
+    };
+
+    createPage(newPage);
+  }
 };

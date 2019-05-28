@@ -8,6 +8,8 @@ import {
   LOGIN_ERROR,
 } from '../constant/auth';
 
+import config from '../config';
+
 const initial = {
   user: null,
   token: null,
@@ -23,7 +25,7 @@ const authReducer = (state = initial, action) => {
       };
 
     case DROP_TOKEN:
-      localStorage.removeItem('token');
+      (!config.isServer) && localStorage.removeItem('token');
 
       return {
         ...state,
@@ -39,7 +41,7 @@ const authReducer = (state = initial, action) => {
     case SET_TOKEN: {
       const token = _.assignIn(state.token || {}, _.pick(action.token, ['accessToken', 'refreshToken']));
 
-      localStorage.setItem('token', JSON.stringify(token));
+      (!config.isServer) && localStorage.setItem('token', JSON.stringify(token));
 
       return {
         ...state,

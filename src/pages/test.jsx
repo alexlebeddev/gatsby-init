@@ -8,6 +8,10 @@ class Test extends Component {
   render() {
     return (
       <PageWrapper {...this.props}>
+        {JSON.stringify(this.props)}
+        <br />
+        {this.props.location.pathname}
+        <br />
         test
       </PageWrapper>
     );
