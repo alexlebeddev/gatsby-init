@@ -23,17 +23,22 @@
   background-position: center center;
 }
 
-.center_div .form_container {
-  width: 300px;
-  border: 1px solid #000;
-  padding: 20px;
-  border-radius: 20px;
-  background: #fff;
+.center_div {
+  .form_container {
+    width: 300px;
+    border: 1px solid #000;
+    padding: 20px;
+    border-radius: 20px;
+    background: #fff;
+  }
 }
 
 @media (max-width: 480px) {
-  .center_div .form_container {
-    width: calc(100% - 40px);
+  .center_div {
+    .form_container {
+      width: calc(100% - 40px);
+    }
   }
 }
+
 
